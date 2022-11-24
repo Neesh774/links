@@ -14,11 +14,11 @@ export default function Home({ links }: { links: PageObjectResponse[] }) {
             {links.map((link, i) => (
               <a
                 key={i}
-                className="w-full py-1 pl-2 pr-4 border-2 border-zinc-300/20 hover:border-zinc-200 backdrop-blur-lg bg-white/10 hover:bg-white/30 transition-all duration-100 rounded-md hover:translate-x-4 hover:-translate-y-2 group"
+                className="w-full group link"
                 // @ts-ignore
                 href={link.properties["URL"].url}
               >
-                <div className="flex flex-col justify-between">
+                <div className="flex flex-col justify-between w-full py-1 pl-2 pr-4 border-2 border-zinc-300/20 group-hover:border-transparent backdrop-blur-lg bg-white/10 group-hover:bg-white/20 transition-all duration-100 group-hover:translate-x-4 group-hover:-translate-y-2">
                   <span className="text-amber-300 font-bold text-2xl">
                     {/* @ts-ignore */}
                     {link.properties.Name.title[0].plain_text}
