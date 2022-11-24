@@ -5,6 +5,7 @@ import { PageObjectResponse } from "@notionhq/client/build/src/api-endpoints";
 import { SocialIcon } from "react-social-icons";
 
 export default function Home({ links }: { links: PageObjectResponse[] }) {
+  console.log(links);
   return (
     <>
       <MetaTags title="Neesh's Links" description="Neesh's Links" />
@@ -12,23 +13,39 @@ export default function Home({ links }: { links: PageObjectResponse[] }) {
         <div className="flex flex-col pt-[20%] md:p-0 md:justify-center gap-8 w-full md:items-center">
           <div className="flex flex-col justify-center gap-4 w-full md:w-96">
             {links.map((link, i) => (
-              <a
-                key={i}
-                className="w-full group link"
-                // @ts-ignore
-                href={link.properties["URL"].url}
-              >
-                <div className="flex flex-col justify-between w-full py-1 pl-2 pr-4 border-2 border-zinc-300/20 group-hover:border-transparent backdrop-blur-lg bg-white/10 group-hover:bg-white/20 transition-all duration-100 group-hover:translate-x-4 group-hover:-translate-y-2">
-                  <span className="text-amber-300 font-bold text-2xl">
+              <>
+                <a
+                  key={i}
+                  className="w-full group link"
+                  // @ts-ignore
+                  href={link.properties["URL"].url}
+                >
+                  <div className="flex flex-col justify-between w-full py-1 pl-2 pr-4 border-2 border-zinc-300/20 group-hover:border-transparent backdrop-blur-lg bg-white/10 group-hover:bg-white/20 transition-all duration-100 group-hover:translate-x-4 group-hover:-translate-y-2">
+                    <span className="text-amber-300 font-bold text-2xl">
+                      {/* @ts-ignore */}
+                      {link.properties.Name.title[0].plain_text}
+                    </span>
+                    <span className="text-md text-white/40 group-hover:text-white/70 transition-all duration-100">
+                      {/* @ts-ignore */}
+                      {new URL(link.properties["URL"].url).hostname}
+                    </span>
                     {/* @ts-ignore */}
-                    {link.properties.Name.title[0].plain_text}
-                  </span>
-                  <span className="text-md text-white/40 group-hover:text-white/70 transition-all duration-100">
-                    {/* @ts-ignore */}
-                    {new URL(link.properties["URL"].url).hostname}
-                  </span>
-                </div>
-              </a>
+                    {link.properties["Embed"]?.rich_text.length > 0 && (
+                      // @ts-ignore
+                      <div
+                        className="mx-auto mt-4"
+                        // @ts-ignore
+                        dangerouslySetInnerHTML={{
+                          // @ts-ignore
+                          __html: link.properties["Embed"].rich_text
+                            .map((r: any) => r.plain_text)
+                            .join(""),
+                        }}
+                      />
+                    )}
+                  </div>
+                </a>
+              </>
             ))}
           </div>
           <div className="flex flex-row gap-2 md:gap-4 w-full md:w-auto">
