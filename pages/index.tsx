@@ -15,13 +15,16 @@ export default function Home({ links }: { links: PageObjectResponse[] }) {
               <a
                 key={i}
                 className="w-full py-1 pl-2 pr-4 border-2 border-zinc-300/20 hover:border-zinc-200 backdrop-blur-lg bg-white/10 hover:bg-white/30 transition-all duration-100 rounded-md hover:translate-x-4 hover:-translate-y-2 group"
+                // @ts-ignore
                 href={link.properties["URL"].url}
               >
                 <div className="flex flex-col justify-between">
                   <span className="text-amber-300 font-bold text-2xl">
+                    {/* @ts-ignore */}
                     {link.properties.Name.title[0].plain_text}
                   </span>
                   <span className="text-md text-white/40 group-hover:text-white/70 transition-all duration-100">
+                    {/* @ts-ignore */}
                     {new URL(link.properties["URL"].url).hostname}
                   </span>
                 </div>
