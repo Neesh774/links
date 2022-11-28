@@ -46,7 +46,7 @@ export default function Home({ links }: { links: Link[] }) {
               </a>
             ))}
           </div>
-          <div className="flex flex-row gap-2 md:gap-4 w-full md:w-auto">
+          <div className="flex flex-row gap-2 md:gap-4 mx-auto">
             <SocialIcon
               url="https://twitter.com/Neesh774"
               className="!w-8 !h-8 md:!w-12 md:!h-12 hover:-translate-y-2 transition-all duration-100"
